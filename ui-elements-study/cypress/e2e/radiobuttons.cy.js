@@ -26,7 +26,7 @@ describe("Radio Button Tests", () => {
     cy.get(radioSelector).as("radioButtons").should("have.length", 3);
   });
 
-  it("Selects a radio button by value", () => {
+  it("[Radio_TC001] Selects a radio button by value", () => {
     // Select a radio button based on its value attribute
     cy.get("@radioButtons")
       .filter('[value="radio1"]') // The 'filter' method is used to find the specific radio button with value 'radio1'
@@ -34,12 +34,12 @@ describe("Radio Button Tests", () => {
       .should("be.checked");
   });
 
-  it("Selects a radio button using index", () => {
+  it("[Radio_TC002] Selects a radio button using index", () => {
     // Use the 'eq' method to select the third radio button (index 2)
     cy.get("@radioButtons").eq(2).check().should("be.checked");
   });
 
-  it("Ensures only one radio button is selected at a time and previous selection is cleared", () => {
+  it("[Radio_TC003] Ensures only one radio button is selected at a time and previous selection is cleared", () => {
     // Select first radio button and verify it's checked
     cy.get("@radioButtons")
       .filter('[value="radio1"]')
@@ -56,7 +56,7 @@ describe("Radio Button Tests", () => {
     cy.get("@radioButtons").filter('[value="radio1"]').should("not.be.checked");
   });
 
-  it("Persists radio button selection after page reload", () => {
+  it("[Radio_TC004] Persists radio button selection after page reload", () => {
     // Select a specific radio button (value='radio2') and confirm selection
     cy.get("@radioButtons")
       .filter('[value="radio2"]')
@@ -70,7 +70,7 @@ describe("Radio Button Tests", () => {
     cy.get("@radioButtons").filter('[value="radio2"]').should("be.checked");
   });
 
-  it("Waits for dynamically loaded radio buttons and interacts", () => {
+  it("[Radio_TC005] Waits for dynamically loaded radio buttons and interacts", () => {
     // Ensure dynamically loaded radio buttons exist before proceeding
     cy.get("@radioButtons").should("have.length.at.least", 3);
 
@@ -78,7 +78,7 @@ describe("Radio Button Tests", () => {
     cy.get("@radioButtons").last().check().should("be.checked");
   });
 
-  it("Handles radio button interactions with async behavior", () => {
+  it("[Radio_TC006] Handles radio button interactions with async behavior", () => {
     // Use 'then' to work with the resolved list of radio buttons
     cy.get("@radioButtons").then(($buttons) => {
       // Verify the expected number of radio buttons are present
