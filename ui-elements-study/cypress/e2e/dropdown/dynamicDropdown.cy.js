@@ -140,4 +140,20 @@ describe("Dynamic Countries Dropdown Tests", () => {
     // Clear the input field
     cy.get("@autocompleteInput").clear().should("have.value", "");
   });
+
+  it.only("[dynamicDropdown_TC011] Verifies multiple country selections dynamically", () => {
+    // Define a list of test inputs
+    const testCountries = ["Japan", "Canada", "Germany"];
+
+    testCountries.forEach((country) => {
+      // Type the country name
+      cy.get("@autocompleteInput").clear().type(country.substring(0, 3)); // Type only first 3 letters
+
+      // Select from suggestions
+      cy.get(".ui-menu-item").contains(country).click();
+
+      // Verify correct selection
+      cy.get("@autocompleteInput").should("have.value", country);
+    });
+  });
 });
