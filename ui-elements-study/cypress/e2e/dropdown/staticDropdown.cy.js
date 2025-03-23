@@ -67,15 +67,15 @@ describe("Static Dropdown Tests", () => {
 
   it("[staticDropdown_TC007] Ensures dropdown contains the correct options", () => {
     // Check that the dropdown contains exactly 4 options (including the default)
+
+    const expectedOptions = ["Select", "Option1", "Option2", "Option3"];
+
     cy.get("@dropdown")
       .find("option")
-      .should("have.length", 4)
-      .then(($options) => {
-        const expectedOptions = ["Select", "Option1", "Option2", "Option3"];
+      .should("have.length", expectedOptions.length)
+      .each(($option, index) => {
         // Iterate over each option and compare with expected values
-        $options.each((index, option) => {
-          expect(option.innerText).to.equal(expectedOptions[index]);
-        });
+        cy.wrap($option).should("have.text", expectedOptions[index]);
       });
   });
 
