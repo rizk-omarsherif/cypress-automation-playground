@@ -91,4 +91,19 @@ describe("JavaScript Alerts Handling", () => {
       "You successfully clicked an alert"
     );
   });
+
+  it.only("[alerts_TC007] Verifies Cypress Basic Authentication", () => {
+    cy.visit("https://the-internet.herokuapp.com/basic_auth", {
+      auth: {
+        username: "admin",
+        password: "admin",
+      },
+    });
+
+    // Verify successful authentication
+    cy.get("p").should(
+      "contain",
+      "Congratulations! You must have the proper credentials."
+    );
+  });
 });
